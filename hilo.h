@@ -1,6 +1,8 @@
 #ifndef HILO_H
 #define HILO_H
 
+#include <string>
+
 using namespace std;
 
 enum Suit {
@@ -46,7 +48,8 @@ bool operator<(const Card c1, const Card c2);
 
 string string_of_card(Card c);
 
-using Hand = Card[5];
+//using Hand = Card[5];
+typedef Card Hand[5];
 
 void sort_hand(Hand h, Hand sh);
 
