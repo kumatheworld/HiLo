@@ -89,7 +89,6 @@ public:
 	double h;
 	double l;
 	double max;
-public:
 	Hilo();
 	Hilo(double h_, double l_);
 };
