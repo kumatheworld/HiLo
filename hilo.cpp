@@ -59,8 +59,6 @@ string string_of_card(Card c) {
 		return string_of_suit[c.s] + string_of_number[c.n];
 }
 
-//using Hand = Card[5];
-
 void sort_hand(Hand h, Hand sh) {
 	for (int i = 0; i < 5; ++i)
 		sh[i] = h[i];
@@ -88,14 +86,14 @@ void print_hand(Hand h) {
 const string string_of_rank[] = {
 	"ROYAL FLUSH",
 	"STRAIGHT FLUSH",
-	"FOUR_OF_A_KIND",
+	"FOUR OF A KIND",
 	"FULL HOUSE",
 	"FLUSH",
 	"STRAIGHT",
 	"THREE OF A KIND",	
 	"TWO PAIR",
 	"JACKS OR BETTER",
-	"NO_HAND",
+	"NO HAND",
 	"INVALID"
 };
 
@@ -191,7 +189,6 @@ Rank rank_of_hand(Hand h) {
 void rank_test_wojk(void) {
 	Hand h;
 	int times[INVALID+1] = {};
-//	string formatter[INVALID+1] = {}
 	
 	for (int i = 0; i < 48; ++i) {
 		h[0] = Card(Suit(i%4), Number(i%13));
