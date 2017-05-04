@@ -25,7 +25,7 @@ Just run sim with win = 1.
 
 $> sim -bw S3 HT -wojk
 <br>
-Run sim beginning with 3 of Spades and 10 of Heart
+Run sim beginning with 3 of Spades and 10 of Hearts
 in this order(without Joker).
 
 $> sim --no-assist -win 2.4
