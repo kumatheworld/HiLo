@@ -1,42 +1,118 @@
 #include <iostream>
+#include <string>
 #include <random>
 #include "hilo.h"
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-	if (argc < 2) {
-		cout << "(@@)" << endl;
-		return 1;
+Card atoc(string s) {
+	int i, j;
+	for (i = 0; i < 4; ++i) {
+		if (s[0] == string_of_suit[i][0]) {
+			break;
+		}
+	} for (j = 0; j < 13; ++j) {
+		if (s[1] == string_of_number[j][0]) {
+			break;
+		}
+	} if (i < 4 && j < 13)
+		return Card(Suit(i), Number(j));
+	return Card(JK, N2);
+}
+
+int main(int argc, char *argv[]) {	
+	bool wojk = false;
+	bool exp_assist = true;
+	double payout = 1;
+	int open = 0;
+	Hand h;
+	bool suited = true;
+	
+	// option handling
+	for (int i = 1; i < argc; ++i) {
+		if (argv[i][0] != '-') {
+			cout << "(@@)\n";
+			return 0;
+		}
+		string s = argv[i]+1;
+		if (s == "wojk") {
+			wojk = true;
+		} else if (s == "-no-assist") {
+			exp_assist = false;
+		} else if (s == "win") {
+			if (i == argc-1) {
+				cout << "(@@)\n";
+				return 0;
+			}
+			payout = atof(argv[++i]);
+		} else if (s == "bw") {
+			if (i == argc-1) {
+				cout << "(@@)\n";
+				return 0;
+			} for (open = 0; open < 4; ++open) {
+				if (i == argc-1) {
+					break;
+				} if (argv[i+1][0] == '-') {
+					break;
+				}
+				h[open] = atoc(argv[++i]);
+				bool invalid = (h[open].s == JK);
+				if (open) {
+					invalid = invalid || (h[open].n == h[open-1].n);
+				} for (int i = 0; i < open-1; ++i) {
+					invalid = invalid || (h[open] == h[i]);
+				} if (invalid) {
+					cout << "(@@)\n";
+					return 0;
+				} if (h[open].s != h[0].s) {
+					suited = false;
+				}
+			}
+		} else {
+			cout << "(@@)\n";
+			return 0;		
+		}
 	}
+
 	random_device rnd;
 	mt19937 mt(rnd());
 	uniform_int_distribution<> rand128(0, 127);
-	Hand h;
-	double payout = atof(argv[1]);
-	bool exp_assist = true;
 	
 	int n = 0;
 	int acc = 0;
 	int r = rand128(mt);
-	for (int j = 0; j < 13; ++j) {
-		acc += init_dist[j];
-		if (r >= acc) {
-			++n;
-		} else
-			break;
-	} // generate a random number distibuted to init_dist
-	h[0] = Card(Suit(rand128(mt)%4), Number(n));
-	cout << string_of_card(h[0]);
+	if (open == 0) {
+		for (int j = 0; j < 13; ++j) {
+			acc += init_dist[j];
+			if (r >= acc) {
+				++n;
+			} else
+				break;
+		} // generate a random number distibuted to init_dist
+		h[0] = Card(Suit(rand128(mt)%4), Number(n));
+		open = 1;
+	}
+	
+	payout *= 0.5;
+	for (int i = 0; i < open; ++i) {
+		cout << string_of_card(h[i]) << " ";
+		payout *= 2;
+	}
 	
 	int t;
-	bool suited = true;
-	for (t = 1; t < 5; ++t) { // t : turn
+	for (t = open; t < 5; ++t) { // t : turn
 		cout << endl;
 		if (exp_assist) {
-			cout << "Expected p/o rate : H = "
-			<< exppo_sub(t, payout, h, suited).h << ", L = "
-			<< exppo_sub(t, payout, h, suited).l << endl;
+			double hi, lo;
+			if (wojk) {
+				hi = exppo_wojk_sub(t, payout, h, suited).h;
+				lo = exppo_wojk_sub(t, payout, h, suited).l;
+			} else {
+				hi = exppo_sub(t, payout, h, suited).h;
+				lo = exppo_sub(t, payout, h, suited).l;
+			}
+			cout << "Expected p/o rate : H = " 
+			<< hi << ", L = " << lo << endl;
 		}
 		string s;
 		do {
@@ -51,8 +127,11 @@ int main(int argc, char *argv[]) {
 		acc = 0;
 		r = rand128(mt);
 		for (int j = 0; j < 13; ++j) {
-			acc += cpds_of_number[h[t-1].n][j];
-			if (r >= acc) {
+			if (wojk) {
+				acc += cpds_of_number_wojk[h[t-1].n][j];
+			} else {
+				acc += cpds_of_number[h[t-1].n][j];
+			} if (r >= acc) {
 				++n;
 			} else
 				break;
@@ -85,6 +164,9 @@ int main(int argc, char *argv[]) {
 			} if ((s == "H" && h[t-1].n < n)
 			|| (s == "L" && h[t-1].n > n)) {
 				payout *= 2;
+				if (t == 4) {
+					payout += odds_of_rank[rank_of_hand_wojk(h)];
+				} 
 			} else {
 				payout = 0;
 				break;
@@ -94,9 +176,9 @@ int main(int argc, char *argv[]) {
 		if (t == 5) {
 			cout << "(" << string_of_rank[rank_of_hand(h)] << ")";
 		}
-		cout << endl << "YOU WIN! (Payout : " << payout << ")" << endl;
+		cout << "\nYOU WIN! (Payout : " << payout << ")\n";
 	} else {
-		cout << endl << "YOU LOSE!" << endl;
+		cout << "\nYOU LOSE!\n";
 	}
 	
 	return 0;
