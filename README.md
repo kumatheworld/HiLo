@@ -30,4 +30,4 @@ in this order(without Joker).
 
 $> sim --no-assist -win 2.4
 <br>
-Run sim without displaying the best strategty and begin with win = 2.4.
+Run sim without displaying the best strategy and begin with win = 2.4.
