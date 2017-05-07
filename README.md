@@ -1,5 +1,5 @@
 # hilo
-High&amp;Low Double Down Simulation and Expected Payout Calculator
+High&amp;Low Double Down Simulation and Expected Payout Calculation
 
 ## Simulator Usage
 We mustn't need any detailed explanations; just note that it is always assumed bet = 1. (and win = 1 if "-win" is omitted)
