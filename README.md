@@ -2,7 +2,7 @@
 High&amp;Low Double Down Simulation and Expected Payout Calculation
 
 ## Simulator Usage
-We mustn't need any detailed explanations; just note that it is always assumed bet = 1. (and win = 1 if "-win" is omitted)
+We don't need any detailed explanations; just note that it is always assumed that bet = 1. (and win = 1 if "-win" is omitted)
 #### NAME
 sim - the hilo simulator
 #### SYNOPSIS
