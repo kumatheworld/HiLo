@@ -16,7 +16,7 @@ do not display the best strategy
 begin with win = num;
 ###### -bw [cards]
 begin with designated cards;
-see the below examples
+see the examples below
 
 #### EXAMPLES
 $> sim
