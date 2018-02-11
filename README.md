@@ -81,12 +81,12 @@ begin with designated cards; see the below examples<by>
 ```
 $ ./sim -b D3 CQ -j
 ```
-Run sim beginning with 3 of Diamonds and Queen of Clubs in this order (you may encounter the joker in the middle).
+Run the simulator beginning with 3 of Diamonds and Queen of Clubs in this order (you may encounter the joker in the middle).
 
 ```
 $ ./sim -n -w 2.4
 ```
-Run sim without displaying the best strategy and begin with win = 2.4.
+Run the simulator without displaying the best strategy and begin with win = 2.4.
 
 ## What does main.cpp do then?
 You may notice that this repository has another file that wasn't mentioned until now --- namely main.cpp. Of course you can build it (together with hilo.cpp).
