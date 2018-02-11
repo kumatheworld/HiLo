@@ -21,7 +21,8 @@ Suppose we won the High&Low game in the middle, choosing **Collect** or encounte
 ***payout = 2^(i-1) &ast; win***<br>
 where **i** is the number of face-up cards.<br>
 What if we successfully guess all **High**/**Low**s until the end? Well, we can get an extra score depending on the hand. The precise formula and the table of **extra bonus** are as follows.<br>
-***payout = 16 &ast; win + bet &ast; extra_bonus***.<br>
+***payout = 16 &ast; win + bet &ast; extra_bonus***.
+
 | Hand      | Extra Bonus |
 |:---------:|:-----------:|
 | ROYAL FLASH       | 1000  |
@@ -34,9 +35,8 @@ What if we successfully guess all **High**/**Low**s until the end? Well, we can 
 | TWO PAIR          | 20    |
 | JACKS OR BETTER   | 10    |
 | NO HAND           | 0     |
-<br>
-Since it is the proportion of **win** to **bet** that really matters, ***we always assume **bet** = 1***.
 
+Since it is the proportion of **win** to **bet** that really matters, ***we always assume **bet** = 1***.
 
 ## Simulator Usage
 #### Build
