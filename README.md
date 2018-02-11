@@ -8,10 +8,11 @@ The game is a kind of high-low split game preceded by a classic video poker game
 * **Collect** the bonus
 * guess **Low**
 
-If we choose **Collect**, we gain the current score and the game is over. If we choose **High**/**Low** on the other hand, we open the next card and we double/lose the current score if the guess is correct/incorrect. For example, suppose the face-up card is a King and we guess **Low**. We double our score if the next card is something between **2** and **Q**, and lose our score if it is a **K** or an **A**. The game continues if our guess is correct. We are supposed to guess whether the leftmost face-down card is **High**/**Low** compared to the rightmost face-up card, and the game may go on until we reach the 5th (i.e. the rightmost) card. Note that if we encounter the joker, our guess is deemed to be correct whichever we chose, and there the game is over.<br>
-The most distinctive aspect of this **High&amp;Low** game compared to a mere high-low split game is that, we can get an extra bonus if we finally predict  **High**/**Low** correctly to each of the 4 stages and the set of 5 open cards there makes some winning hand.
+If we choose **Collect**, we gain the current score and the game is over. If we choose **High**/**Low** on the other hand, we open the next card and we double/lose the current score if the guess is correct/incorrect. For example, suppose the face-up card is a **K** and we guess **Low**. We double our score if the next card is something between **2** and **Q**, and lose our score if it is a **K** or an **A**. The game continues if our guess is correct. At each stage of the game, we are supposed to guess whether the leftmost face-down card is **High**/**Low** compared to the rightmost face-up card, and the game may go on until we reach the 5th (i.e. the rightmost) card. Note that if we encounter the joker, our guess is deemed to be correct whichever we chose, and there the game is over.<br>
+The most distinctive aspect of this **High&amp;Low** game compared to a mere high-low split game is that, we can get an extra bonus if we finally predict  **High**/**Low** correctly to each of the 4 stages and the set of 5 open cards there makes some winning hand!
 
 ## A little bit of Terminology
+We need to know some terminology to play with our program, though it would be tedious...(@@)
 #### Expressing a card with 2 letters --- What does "S2" stand for?
 We express each of 53 cards (including the joker) with 2 letters. The joker is simply **JK** and an ordinary card is made of a letter representing a suit (**C** **D** **H** **S**, meaning Club, Diamond, Heart, Spade respectively) followed by a letter representing a number (**2**, **3**, **4**, **5**, **6**, **7**, **8**, **9**, **T**, **J**, **Q**, **K**, **A**). For example, **S2**,  **HT**  respectively stand for the 2 of Spades and the 10 of Hearts.
 
@@ -36,7 +37,7 @@ What if we successfully guess all **High**/**Low**s until the end? Well, we can 
 | JACKS OR BETTER   | 10    |
 | NO HAND           | 0     |
 
-Since it is the proportion of **win** to **bet** that really matters, ***we always assume **bet** = 1***.
+Since it is the proportion of **win** to **bet** that really matters, ***we always assume bet = 1***.
 
 ## Simulator Usage
 #### Build
@@ -73,8 +74,9 @@ do not display the best strategy
 ###### -w [num]
 begin with win = num
 ###### -b [cards]
-begin with designated cards; see the below examples
+begin with designated cards; see the below examples<by>
 
+(By default, we use a joker-free deck, display the best strategy as we can see above, assume **win** = 1 and begin with nothing.)
 ##### EXAMPLES
 ```
 $ ./sim -b D3 CQ -j
