@@ -15,37 +15,38 @@ Card atoc(string s) {
 		if (s[1] == string_of_number[j][0]) {
 			break;
 		}
-	} if (i < 4 && j < 13)
+	} if (i < 4 && j < 13) {
 		return Card(Suit(i), Number(j));
+	}
 	return Card(JK, N2);
 }
 
-int main(int argc, char *argv[]) {	
-	bool wojk = false;
+int main(int argc, char *argv[]) {
+	bool wojk = true;
 	bool exp_assist = true;
 	double payout = 1;
 	int open = 0;
 	Hand h;
 	bool suited = true;
 	
-	// option handling
+	// handling options
 	for (int i = 1; i < argc; ++i) {
 		if (argv[i][0] != '-') {
 			cout << "(@@)\n";
 			return 0;
 		}
 		string s = argv[i]+1;
-		if (s == "wojk") {
-			wojk = true;
-		} else if (s == "-no-assist") {
+		if (s == "j") {
+			wojk = false;
+		} else if (s == "n") {
 			exp_assist = false;
-		} else if (s == "win") {
+		} else if (s == "w") {
 			if (i == argc-1) {
 				cout << "(@@)\n";
 				return 0;
 			}
 			payout = atof(argv[++i]);
-		} else if (s == "bw") {
+		} else if (s == "b") {
 			if (i == argc-1) {
 				cout << "(@@)\n";
 				return 0;
@@ -88,7 +89,7 @@ int main(int argc, char *argv[]) {
 				++n;
 			} else
 				break;
-		} // generate a random number distibuted to init_dist
+		} // generating a random number distibuted to init_dist
 		h[0] = Card(Suit(rand128(mt)%4), Number(n));
 		open = 1;
 	}
