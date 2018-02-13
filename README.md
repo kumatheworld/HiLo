@@ -2,7 +2,7 @@
 Hi there! This is a tiny set of programs that analyzes a poker-like card game **High&amp;Low**. Here we go!
 
 ## Brief Description of the Game
-The game is a kind of high-low split game preceded by a classic video poker game. Suppose we have gained a score after playing a video poker round. Now we are ready to play another game **High&amp;Low**, expecting raising our score!<br>
+The game is a kind of high-low split game preceded by a classic video poker game. (If you are not familiar with these terms, go find a machine in some amusement arcade!) Suppose we have gained a score after playing a video poker round. Now we are ready to play another game **High&amp;Low**, expecting raising our score!<br>
 **High&amp;Low** is a sort of double down game. First we are dealt 5 face-down cards and open the leftmost card. We have 3 options here before opening the next card.
 * guess **High**
 * **Collect** the bonus
@@ -62,7 +62,7 @@ CHOOSE [H/C/L] C
 
 YOU WIN! (Payout : 4)
 ```
-Amazingly, the program calculates the expectation of **payout** for each choice **H** and **L**, which provides the best strategy we should take! (The expectation here assumes we always make the best decision at each stage.)
+Amazingly, the program calculates the expectation of **payout** for each choice **H** and **L**, which provides the best strategy we should take! (The expectation here assumes we always make the best decisions thereafter.)
 
 #### Options
 The simulator equips 4 UNIX command-like options that bring you joy. Have fun!
