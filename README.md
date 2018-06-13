@@ -95,6 +95,4 @@ g++ main.cpp hilo.cpp
 ```
 If you run ./a.out, you'll see some tables generated in the standard output. It displays the best strategies at the first stage with the expected **payout** rate.
 
-## Some Excuses
-You'll find incorrect terminology or minor English mistakes since I'm neither an expert in this area nor a native English speaker. I was just asked to analyze the game by my friend who loves such kind of games really badly.
-So please, let me know if there are any mistakes! (@@)
+Have fun!
