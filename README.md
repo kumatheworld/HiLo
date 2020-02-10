@@ -1,4 +1,4 @@
-# hilo --- High&amp;Low Double Down Simulation and Expected Payout Calculation
+# HiLo --- High&amp;Low Double Down Simulation and Expected Payout Calculation
 Hi there! This is a tiny set of programs that analyzes a poker-like card game **High&amp;Low**. Here we go!
 
 ## Brief Description of the Game
